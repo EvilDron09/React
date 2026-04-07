@@ -7,9 +7,11 @@ function App() {
 
   return (
     <>
-      <MyComponent text={'hello1'}/>
-      <MyComponent text={'hello2'}/>
-      {MyComponent({text:'hello 3'})}
+        <MyComponent title={'hello1'}>
+        Lorem ipsum dolor sit amet.
+        </MyComponent>
+        <MyComponent title={'hello2'}></MyComponent>
+      {MyComponent({title:'hello 3'})}
 
     </>
   )
