@@ -1,0 +1,14 @@
+h3,p{
+    margin-bottom: 5px;
+    padding-left: 3px;
+}
+
+h3{
+    background: purple;
+    color: gold;
+    font-size: 20px;
+
+}
+p{
+    background: rgb(42 117 170 / 0.9);
+}
