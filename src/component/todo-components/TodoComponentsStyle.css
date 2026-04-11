@@ -1,0 +1,7 @@
+.todoDiv{
+    background: coral;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
