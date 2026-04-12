@@ -1,0 +1,7 @@
+.postDiv{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: aqua;
+    padding-left: 20px;
+}
