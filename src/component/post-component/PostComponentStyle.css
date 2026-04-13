@@ -1,0 +1,6 @@
+section{
+    display: flex;
+    flex-direction: column;
+    background: silver;
+    gap: 20px;
+}
