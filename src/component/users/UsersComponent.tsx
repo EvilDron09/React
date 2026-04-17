@@ -1,22 +1,24 @@
-import type {FC} from "react";
+import {useEffect, useState} from "react";
 import type {IUser} from "../../model/IUser.ts";
-import {Link, useNavigate} from "react-router-dom";
+import {usersService} from "../../service/api-service.ts";
+import { UserComponent } from "../user/UserComponent.tsx";
 
-type UserType ={
-    item:IUser
-}
 
-export const UsersComponent:FC<UserType> = ({item}) => {
-    const navigation = useNavigate();
-    const handleOnClick = () =>{
-        navigation('details', {state:item});
-    }
+
+
+
+export const UsersComponent = () => {
+    const [users, setUser] = useState<IUser[]>([]);
+    useEffect(() => {
+        usersService.getUsers().then((allUsers) =>{
+            setUser(allUsers)
+        })
+    }, []);
     return (
-
-        <div><Link to={'details'} state={item}>{item.username}</Link>
-            <button onClick={handleOnClick}>details</button>
-        </div>
-
-
+        <>
+            {
+                users.map(user => <UserComponent key={user.id} item={user}/>)
+            }
+        </>
     );
 };

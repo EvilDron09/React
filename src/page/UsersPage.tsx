@@ -1,11 +1,13 @@
-import {UserComponent} from "../component/user/UserComponent.tsx";
+import {UsersComponent} from "../component/users/UsersComponent.tsx";
+import {Outlet} from "react-router-dom";
 
 
 export const UsersPage = () => {
 
     return (
         <>
-            <UserComponent/>
+            <UsersComponent/>
+            <Outlet/>
         </>
     );
 };

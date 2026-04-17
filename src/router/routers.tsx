@@ -9,7 +9,9 @@ import {SingleUsersDetailsPage} from "../page/SingleUsersDetailsPage.tsx";
 export const routes = createBrowserRouter([
     {path:'',element:<Layout/>,children:[
             {index:true, element:<HomePege/>},
-            {path:'users', element:<UsersPage/>},
+            {path:'users', element:<UsersPage/>, children:[
+                    {path:'posts/:userId', element:<PostsPage/>}
+                ]},
             {path:'users/details', element:<SingleUsersDetailsPage/>},
             {path:'posts', element:<PostsPage/>},
         ]}
