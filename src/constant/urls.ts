@@ -6,21 +6,21 @@ export const jsonplaceholderUrl ={
         allUsers:baseJsonplaceholderUrl + '/users',
     },
     posts:{
-        allPosts:baseJsonplaceholderUrl + 'posts',
+        allPosts:baseJsonplaceholderUrl + '/posts',
     },
     comments:{
-        allComments: baseJsonplaceholderUrl + 'comments',
+        allComments: baseJsonplaceholderUrl + '/comments',
     },
 }
 export const dummyjsonUrl ={
     users:{
-        allUsers:baseDummyjsonUrl + 'users',
+        allUsers:baseDummyjsonUrl + '/users',
     },
     posts:{
-        allPosts:baseDummyjsonUrl + 'posts',
+        allPosts:baseDummyjsonUrl + '/posts',
     },
     comments:{
-        allComments:baseDummyjsonUrl +'comments',
+        allComments:baseDummyjsonUrl +'/comments',
     }
 
 }
