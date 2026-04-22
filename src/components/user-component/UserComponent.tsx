@@ -1,6 +1,7 @@
 import {type FC} from "react";
 import type {IUser} from "../../models/user/IUser.ts";
 import {useNavigate} from "react-router-dom";
+import './UserComponentStyle.css'
 
 
 type UserComponentType ={
