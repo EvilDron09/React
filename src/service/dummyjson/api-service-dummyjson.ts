@@ -1,30 +1,27 @@
-import {dummyjsonUrl} from "../../constant/urls.ts";
-import type {IUsersDummyjson} from "../../models/dummyjson/IUsersDummyjson.ts";
-import type {IPostsDummyjson} from "../../models/dummyjson/IPostsDummyjson.ts";
-import type {ICommentsDummyjson} from "../../models/dummyjson/ICommentsDummyjson.ts";
-import type {IUsersArray} from "../../models/dummyjson/ArrayElement/IUsersArray.ts";
-import type {IPostsArray} from "../../models/dummyjson/ArrayElement/IPostsArray.ts";
-import type {ICommentsArray} from "../../models/dummyjson/ArrayElement/ICommentsArray.ts";
+
+import type {IUsersResponse} from "../../models/dummyjson/ResponseElement/IUsersResponse.ts";
+import type {IPostsResponse} from "../../models/dummyjson/ResponseElement/IPostsResponse.ts";
+import type {ICommentsResponse} from "../../models/dummyjson/ResponseElement/ICommentsResponse.ts";
 
 
+const baseUrl = ' https://dummyjson.com';
 export const usersServiceDummyjson = {
-   getUsersServiceDummyjson: async():Promise<IUsersDummyjson[]> =>{
-      const response:IUsersArray = await fetch(dummyjsonUrl.users.allUsers)
+   getUsersServiceDummyjson: async():Promise<IUsersResponse> =>{
+      return await fetch(baseUrl +'/users')
           .then(value => value.json())
-      return response.users
    }
 }
 export const postsServiceDummyjson = {
-   getPostsServiceDummyjson: async():Promise<IPostsDummyjson[]> =>{
-      const response:IPostsArray =  await fetch(dummyjsonUrl.posts.allPosts)
+   getPostsServiceDummyjson: async():Promise<IPostsResponse> =>{
+     return await fetch(baseUrl + '/posts')
           .then(value => value.json())
-      return response.posts
+
    }
 }
 export const commentsServiceDummyjson = {
-   getCommentsServiceDummyjson: async():Promise<ICommentsDummyjson[]> =>{
-      const response:ICommentsArray =  await fetch(dummyjsonUrl.comments.allComments)
+   getCommentsServiceDummyjson: async():Promise<ICommentsResponse> =>{
+     return await fetch(baseUrl + '/comments')
           .then(value => value.json())
-      return response.comments
+
    }
 }

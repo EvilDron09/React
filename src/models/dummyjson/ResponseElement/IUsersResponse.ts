@@ -1,6 +1,6 @@
 import type {IUsersDummyjson} from "../IUsersDummyjson.ts";
 
-export interface IUsersArray{
+export interface IUsersResponse {
 
         users: IUsersDummyjson[],
         total: number,

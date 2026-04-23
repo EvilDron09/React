@@ -1,6 +1,6 @@
 import type {IPostsDummyjson} from "../IPostsDummyjson.ts";
 
-export interface IPostsArray{
+export interface IPostsResponse {
     posts: IPostsDummyjson[],
     total: number,
     skip: number,

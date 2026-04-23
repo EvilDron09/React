@@ -12,7 +12,7 @@ export const PostDummyjson:FC<PostDummyjsonType> = ({item}) => {
             <h3>{item.id}, {item.userId}</h3>
             <h2>{item.title}</h2>
             <p>{item.body}</p>
-            <p>{item.tags.map(tag =><span key={item.id}>{tag}</span>)}</p>
+            <p>{item.tags.map((tag,index) =><span key={index}>{tag}</span>)}</p>
             <p>{item.reactions.dislikes},{item.reactions.likes}</p>
             <p>{item.views}</p>
         </div>
