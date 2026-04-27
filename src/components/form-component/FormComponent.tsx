@@ -1,5 +1,7 @@
 
 import {useForm} from "react-hook-form";
+import {userValidator} from "../user-validator/user_validator.ts";
+import {joiResolver} from "@hookform/resolvers/joi";
 
 interface IFormProps {
     username: string,
@@ -13,7 +15,7 @@ export const FormComponent = () => {
         handleSubmit,
         register,
         formState:{errors, isValid}
-        } =useForm<IFormProps>({mode:"all"});
+        } =useForm<IFormProps>({mode:"all", resolver:joiResolver(userValidator)});
     const customHandler = (formDataProps: IFormProps) =>{
         console.log(formDataProps)
     }
@@ -22,35 +24,19 @@ export const FormComponent = () => {
         <div>
             <form onSubmit={handleSubmit(customHandler)}>
                <label>
-                   <input type="text" {...register('username', {
-                    required: {value: true, message:'name is required'},
-                    // pattern:{
-                    //     value:/\w+/,
-                    //     message:'wrong name'
-                    // }
-                    minLength:{ value: 1,message:'wrong name'}
-                })}/>
+                   <input type="text" {...register('username')}/>
 
                    {errors.username && <div>{errors.username.message}</div>}
                </label>
 
                 <label>
-                    <input type="text" {...register('password', {
-                    required: true,
-                    minLength:{value:3, message:'pass too short'},
-                    maxLength:{value:6, message:'pass too long'},
-                })}/>
+                    <input type="text" {...register('password')}/>
 
                     {errors.password && <div>{errors.password.message}</div>}
                 </label>
 
                 <label>
-                    <input type="number" {...register('age' , {
-                    required: true,
-                    valueAsNumber: true,
-                    min: {value:1, message: 'age too small'},
-                    max: {value:117, message: 'age too big'},
-                })}/>
+                    <input type="number" {...register('age')}/>
 
                     {errors.age && <div>{errors.age.message}</div>}
             </label>
