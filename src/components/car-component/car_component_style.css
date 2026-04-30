@@ -1,0 +1,13 @@
+.car{
+    border: solid black 2px;
+    margin-bottom: 10px;
+    width: 30vw;
+}
+
+.car>div{
+    margin-left: 10px;
+}
+
+button{
+    background: silver;
+}
