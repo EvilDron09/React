@@ -4,6 +4,7 @@ import {login} from "../../services/api-service.ts";
 
 export const LoginComponent = () => {
 
+    // логінація користувача
     useEffect(() => {
         login({
             username:'emilys',

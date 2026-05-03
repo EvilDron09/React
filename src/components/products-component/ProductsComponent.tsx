@@ -4,6 +4,7 @@ interface IProductsComponent{
     item:IProduct
 }
 
+// динамічне створення елементів
 export const ProductsComponent = ({item}: IProductsComponent) => {
     return (
         <div>

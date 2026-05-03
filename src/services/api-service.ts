@@ -5,18 +5,20 @@ import type {IProduct} from "../models/IProducts.ts";
 import type {IProductsResponseModelType} from "../models/IProductsResponseModelType.ts";
 import type {ITokenPair} from "../models/ITokenPair.ts";
 
+// типізація для лигінації
 type LoginDataType = {
     username: string,
     password: string,
     expiresInMins: number,
 }
 
-
+// створення базової url та спільних хедерів
 const axiosInstance = axios.create({
     baseURL:'https://dummyjson.com/auth',
     headers:{}
 });
 
+// перехоплювач, який додає до get-ових запитів токін
 axiosInstance.interceptors.request.use((requestObject) =>{
     if(requestObject.method?.toUpperCase() === 'GET'){
         requestObject.headers.Authorization = 'Bearer ' + retriveLocalStorage<IUserWithTokens>('user').accessToken
@@ -24,7 +26,7 @@ axiosInstance.interceptors.request.use((requestObject) =>{
     return requestObject
 })
 
-
+// запит на логінацію та отримання токінів
 export const login = async ({username, password, expiresInMins}: LoginDataType):Promise<IUserWithTokens> =>{
     const{data: userWithTokens} = await axiosInstance.post<IUserWithTokens>('/login',{username, password, expiresInMins});
     console.log(userWithTokens);
@@ -32,11 +34,13 @@ export const login = async ({username, password, expiresInMins}: LoginDataType):
     return userWithTokens;
 }
 
+// отримання інформації після логінації
 export const loadAuthProducts = async():Promise<IProduct[]> =>{
     const {data:{products}} = await axiosInstance.get<IProductsResponseModelType>('/products');
     return products
 }
 
+// логінація через рефреш токін та отримання нових аксес і рефреш токінів
 export const refresh = async () =>{
      const iUserWithTokens = retriveLocalStorage<IUserWithTokens>('user');
      const  {data:{accessToken, refreshToken}} = await axiosInstance.post<ITokenPair>('/refresh', {

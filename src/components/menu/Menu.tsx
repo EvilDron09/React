@@ -1,5 +1,6 @@
 import {Link} from "react-router-dom";
 
+// створення меню сторінки
 export const Menu = () => {
     return (
         <div>

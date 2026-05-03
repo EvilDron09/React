@@ -1,3 +1,4 @@
+// типізація для користувачів
 export interface IUserWithTokens{
     id: number;
     username: string;
