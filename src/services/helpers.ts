@@ -1,4 +1,4 @@
-//
+//дістає та типізує елементи з локального сховища
 export const retriveLocalStorage = <T, >(key: string) =>{
     const object = localStorage.getItem(key) || '';
     if(!object){
