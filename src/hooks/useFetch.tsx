@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 
+// створює уастомній хук
 export const useFetch = () =>{
     const[users, setUsers] = useState([]);
     useEffect(() => {

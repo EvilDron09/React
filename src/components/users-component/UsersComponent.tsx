@@ -4,6 +4,7 @@ import {useFetch} from "../../hooks/useFetch.tsx";
 
 export const UsersComponent = () => {
     console.log('users');
+    // Викликає кастомний хук
     const users = useFetch();
 
     const arr = useMemo(() => {
