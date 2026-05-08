@@ -5,6 +5,7 @@ export const UsersComponent = () => {
     console.log('users');
     const[users, setUsers] = useState([]);
 
+    // виклик функції. Запамьятовує посилання між рендерами
     const foo = useCallback(() =>{
         console.log(('test'));
     },[])
