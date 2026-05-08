@@ -4,7 +4,7 @@ import {UserComponent} from "../user-component/UserComponent.tsx";
 export const UsersComponent = () => {
     console.log('users');
     const[users, setUsers] = useState([]);
-
+    // повертає єлементи функцію та закешовую їх
     const arr = useMemo(() => {
         return [11,22,33];
     },[]);
