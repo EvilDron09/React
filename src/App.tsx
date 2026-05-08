@@ -10,6 +10,7 @@ function App() {
     const [counter, setCounter] =useState<number>(init.counterValue)
 
   return (
+    //   викликає контекст та змушує виконувати дерево компонентів описаний в контексти код
     <>
       <MyContext.Provider value={{
         counterValue:counter  ,

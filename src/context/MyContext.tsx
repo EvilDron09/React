@@ -12,5 +12,5 @@ export const init = {
         console.log(obj)
     }
 }
-
+//     передає данні через дерево компонентів
 export const MyContext = createContext<MyContextType>(init)

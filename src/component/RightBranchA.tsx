@@ -2,7 +2,7 @@ import {useContext} from "react";
 import {MyContext} from "../context/MyContext.tsx";
 
 export const RightBranchA = () => {
-
+    // Створює дитячий компонент з кнопкою, яка при клику змінює значення на компоненті LBA
     const {counterValue, increment} = useContext(MyContext);
     return (
         <div>
