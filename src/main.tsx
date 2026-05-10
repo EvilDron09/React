@@ -6,10 +6,6 @@ import {router} from "./routers/router.tsx";
 import {Provider} from "react-redux";
 import {store} from "./redux/store.ts";
 
-
-
-
-
 createRoot(document.getElementById('root')!).render(
     <Provider store={store}>
         <RouterProvider router={router}/>
