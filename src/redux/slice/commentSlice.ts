@@ -12,6 +12,7 @@ const loadComments = createAsyncThunk('commentSlice/ladComments',
     async(_,thunkAPI) =>{
         try {
             const comments = await getAll<IComment[]>('/comments');
+            console.log(comments)
             return thunkAPI.fulfillWithValue(comments);
         }catch (e) {
             console.log(e);

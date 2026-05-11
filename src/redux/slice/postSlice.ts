@@ -12,6 +12,7 @@ const loadPosts = createAsyncThunk("postSlice/loadPosts",
     async (_,thunkAPI) =>{
         try {
             const posts = await getAll<IPost[]>('/posts');
+            console.log(posts)
             return thunkAPI.fulfillWithValue(posts)
         }catch (e){
             console.log(e);

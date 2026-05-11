@@ -12,6 +12,7 @@ const loadUsers = createAsyncThunk("userSlice/loadUsers",
     async (_,thunkAPI) =>{
         try {
                 const users = await getAll<IUser[]>('/users')
+            console.log(users)
                 return thunkAPI.fulfillWithValue(users)
         }catch (e){
             console.log(e)
@@ -26,7 +27,7 @@ export const userSlice = createSlice({
     reducers:{},
     extraReducers:
     builder => {
-        builder.addCase(loadUsers.fulfilled,(state, action:PayloadAction<IUser[]>)=>{
+        builder.addCase(loadUsers.fulfilled, (state, action: PayloadAction<IUser[]>) => {
             state.users = action.payload
         })
     }
