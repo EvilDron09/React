@@ -1,0 +1,34 @@
+import axios from "axios";
+
+type AxiosUpdateTyp<TData, TBody> = ({
+    route,
+    body,
+}:{
+    route:string;
+    body: TBody;
+}) => Promise<TData>;
+
+interface Output<TData, TBody>{
+    get:({ route }: {route: string}) =>Promise<TData>;
+    post: AxiosUpdateTyp<TData, TBody>;
+    put: AxiosUpdateTyp<TData, TBody>;
+    deleteEntity: ({route}: {route:string})=>Promise<null>
+}
+const API_URL = 'https://jsonplaceholder.typicode.com';
+
+export const useApi = <T, TBody = any>(): Output<T, TBody> => {
+    const getApiPath = (route:string) =>`${API_URL}/${route}`;
+    const get = async ({route}:{route:string}):Promise<T> => {
+        try {
+            const {data} = await axios.get(getApiPath(route));
+            return data;
+        }catch (e) {
+            if(e && typeof e === 'object' && 'message' in e && typeof e.message === 'string') {
+                throw new Error('Network Error');
+            }
+        }
+
+    }
+    return {get};
+}
+
