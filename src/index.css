@@ -1,1 +1,8 @@
 /*@import "tailwindcss";*/
+div{
+    background: cyan;
+    padding-left: 10px;
+    border: darkblue 2px solid;
+}
+
+
