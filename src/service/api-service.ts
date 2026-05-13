@@ -29,6 +29,17 @@ export const useApi = <T, TBody = any>(): Output<T, TBody> => {
         }
 
     }
-    return {get};
+    const post = async ({route, body}:{route:string; body: TBody}):Promise<T> => {
+        try {
+            const {data} = await axios.post(getApiPath(route), {...body});
+            return data;
+        }catch (e) {
+            if(e && typeof e === 'object' && 'message' in e && typeof e.message === 'string') {
+                throw new Error('Network Error');
+            }
+        }
+
+    }
+    return {get,post};
 }
 
