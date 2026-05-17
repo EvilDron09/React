@@ -1,66 +1,53 @@
 
 import './App.css'
-import {useUsers} from "./api/query/users/useUsers.ts";
-import {useUser} from "./api/query/users/useUser.ts";
-import {useCreatePost} from "./api/query/posts/useCreatePost.ts";
-import {useState} from "react";
+import {Fragment, useState} from "react";
+import {useGetPaginatedPosts} from "./api/query/posts/useGetPaginatedPosts.ts";
 
+const DEFAULT_LIMIT = 10;
+const TOTAL_PAGES = 10;
 
 const App = () => {
-  const [postTitle, setPostTitle] = useState<string>('')
-  const [postBody, setPostBody] = useState<string>('')
+const [pagination, setPagination] = useState<{limit:number; offset:number}>({
+    limit:DEFAULT_LIMIT,
+    offset:0,
+});
 
-  const {data:users, isFetching, status} = useUsers()
-  const {data:user, isFetching: isUserLoading, status:userStatus} = useUser({userId:String(1)});
+const {
+    isFetching:isPaginatedPostFetching,
+    refetch,
+    data:paginatedPosts,
+} = useGetPaginatedPosts(pagination);
 
-  const {mutateAsync, data:post} = useCreatePost();
+console.log(paginatedPosts);
 
-  const handleCreatePost = async ( {userId }: { userId:string }) => {
-    try {
-          const response = await mutateAsync({userId, body:postBody, title:postTitle});
+const handleChangePage = async(offset:number) =>{
+    setPagination((prevState) => ({...prevState, offset}));
+    await refetch();
+};
 
-          if(response){
-            console.log(response);
-            return
-          }
-          console.log("No response")
-    }catch (e){
-      console.error(e)
-    }
-  }
+if(isPaginatedPostFetching) return  <div>Loading...</div>;
 
-  console.log(user,isUserLoading,userStatus)
-console.log({postTitle, postBody});
-  console.log(users,status);
-    if (isFetching) return <div>Loading...</div>
-
-  if(post){
-    return (
-        <>
-          <div>{post.id}</div>
-          <div>{post.title}</div>
-          <div>{post.body}</div>
-          <div>{post.userId}</div>
-        </>
-    )
-  }
+if(!paginatedPosts){
+    return null
+}
 
   return (
     <div>
-      {
-        users?.map(user => {
-          return (
-              <div key={user.id}>{user.id}---{user.name}
-
-                <button onClick={async () => await handleCreatePost({userId: String (user.id)})}>Create post by user id</button>
-              </div>
-          )
-        })
-      }
-      <input  value={postTitle} onChange={(e) => setPostTitle(e.target.value)}/>
-        <input  value={postBody} onChange={(e) => setPostBody(e.target.value)}/>
-
-
+        {paginatedPosts.map((item)=>(
+            <Fragment key={item.id}>
+                <div>title: {item.id} {item.title}</div>
+                <div>body: {item.body}</div>
+                <div>User I: {item.userId}</div>
+                <div>User I: {item.userId}</div>
+            </Fragment>
+        ))}
+        <div>
+            <button onClick={() => handleChangePage(0)} disabled={pagination.offset === 0}>Перша</button>
+            <button onClick={() => handleChangePage(pagination.offset-pagination.limit)} disabled={pagination.offset === 0}>Попередній</button>
+            <span>Сторінка {pagination.offset / pagination.limit + 1 }</span>
+            <button onClick={() => handleChangePage(pagination.offset-pagination.limit)} disabled={pagination.offset === (TOTAL_PAGES - 1)* pagination.limit}>Наступна</button>
+            <button onClick={() => handleChangePage((TOTAL_PAGES - 1))} disabled={pagination.offset === (TOTAL_PAGES - 1)* pagination.limit}>Остання</button>
+        </div>
     </div>
   )
 }
