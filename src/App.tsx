@@ -60,6 +60,7 @@ console.log({postTitle, postBody});
       <input  value={postTitle} onChange={(e) => setPostTitle(e.target.value)}/>
         <input  value={postBody} onChange={(e) => setPostBody(e.target.value)}/>
 
+
     </div>
   )
 }
